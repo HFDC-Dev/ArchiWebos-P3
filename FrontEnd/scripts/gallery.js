@@ -9,22 +9,22 @@ fetch('http://localhost:5678/api/works') // Remplacez l'URL par l'URL de votre A
   })
   .then(data => {
     console.log(data); // Affiche les données récupérées dans la console
-    data.forEach((data, i) => {
-        setFigure(`Élément ${i}:`,data)
-    })
+    // Utilisation d'une boucle
+    for (let i = 0; i < data.length; i++) {
+      setFigure(data[i]);
+    }
   })
   .catch(error => {
     console.error('Erreur:', error); // Affiche l'erreur si quelque chose ne va pas
   });
 
-
-  
+// Fonction qui sert à ajouter dynamiquement les éléments dans la "gallery"
   function setFigure(data) {
-    const figure = document.createElement("figure")
+    const figure = document.createElement("figure") // Crée un élément
   figure.innerHTML = `<img src=${data.imageUrl} alt=${data.title}>
-					<figcaption>${data.title}</figcaption>`;
+					<figcaption>${data.title}</figcaption>`; // Définir le contenu HTML de <figure>
 
-  document.body.append(figure);
+  document.querySelector(".gallery").append(figure); // Ajout de l'élément <figure> à un élément avec la classe "gallery" dans le DOM
 
-  }
+  };
 
