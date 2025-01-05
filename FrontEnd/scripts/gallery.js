@@ -19,12 +19,12 @@ fetch('http://localhost:5678/api/works') // Remplacez l'URL par l'URL de votre A
   });
 
 // Fonction qui sert à ajouter dynamiquement les éléments dans la "gallery"
-  function setFigure(data) {
-    const figure = document.createElement("figure") // Crée un élément
+function setFigure(data) {
+  const figure = document.createElement("figure") // Crée un élément
   figure.innerHTML = `<img src=${data.imageUrl} alt=${data.title}>
 					<figcaption>${data.title}</figcaption>`; // Définir le contenu HTML de <figure>
 
   document.querySelector(".gallery").append(figure); // Ajout de l'élément <figure> à un élément avec la classe "gallery" dans le DOM
 
-  };
+};
 
