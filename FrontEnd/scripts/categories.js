@@ -18,5 +18,22 @@ document.addEventListener("DOMContentLoaded", function () {
       allButton.textContent = "Tous";
       allButton.addEventListener("click", () => displayWorks(allWorks));
       categoriesContainer.appendChild(allButton);
+
+      // Générer les boutons pour chaque catégorie
+      categories.forEach((category) => {
+        const button = document.createElement("button");
+        button.className = "btn";
+        button.textContent = category.name; // On utilise le nom de la catégorie
+        button.addEventListener("click", () => {
+          const filteredWorks = allWorks.filter(
+            (work) => work.categoryId === category.id
+          );
+          displayWorks(filteredWorks);
+        });
+        categoriesContainer.appendChild(button);
+      });
     })
+    .catch((error) => console.error("Erreur lors du chargement des catégories:", error))
+
+
 })
