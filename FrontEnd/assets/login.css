@@ -1,0 +1,46 @@
+body {
+    background-color: #fffef8;
+}
+#login {
+   width: 35%;
+   margin: auto;
+}
+
+#login h2 {
+    text-align: center;
+	margin-bottom: 1em;
+	padding-top: 50px;
+}
+
+#login label {
+    margin: 1em 0 0.5em 0;
+    font-weight: 300;
+}
+
+#login form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+#login input {
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+#btn-log {
+    margin: 2em auto;
+    width: 180px;
+    background-color: #1D6154;
+    color: white;
+}
+
+#btn-log:hover {
+    background-color: #0e2f28;
+}
+
+#mdpo {
+    text-align: center;
+    color: black;
+}
