@@ -44,3 +44,10 @@ body {
     text-align: center;
     color: black;
 }
+
+
+footer {
+    position: fixed;
+    bottom: 10px;
+    right: 85px;
+}
