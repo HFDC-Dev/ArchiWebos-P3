@@ -9,6 +9,9 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
 		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+		integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
@@ -20,7 +23,8 @@
 			<ul>
 				<li>projets</li>
 				<li>contact</li>
-				<li><a href="login.html">login</a></li>
+				<li><a id="login-link" class="hidden" href="login.html">login</a></li>
+				<li><a id="logout-btn" class="hidden" href="#">logout</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -43,7 +47,8 @@
 		</section>
 		<section id="portfolio">
 			<h2>Mes Projets</h2>
-			<div id="categories">
+			<button id="edit-btn" class="hidden">Modifier</button>
+			<div id="categories" class="hidden">
 
 			</div>
 			<div class="gallery">
@@ -73,7 +78,9 @@
 		</nav>
 	</footer>
 
+	<script src="./scripts/main.js"></script>
 	<script src="./scripts/categories.js"></script>
+	<script src="./scripts/login.js"></script>
 </body>
 
 </html>
