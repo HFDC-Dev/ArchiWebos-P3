@@ -172,6 +172,15 @@ button:hover {
 	background-color: #1D6154;
 	color: white;
 }
+button#edit-btn {
+	border: none;
+	color: black;
+	font-size: 16px;
+	font-weight: 200;
+}
+button#edit-btn:hover {
+	background-color: transparent;
+}
 .gallery {
 	width: 100%;
 	display: grid;
