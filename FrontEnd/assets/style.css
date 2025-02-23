@@ -168,6 +168,18 @@ li:hover {
 	height: 100%;
 	background: #3333337a;
 }
+/****** barre horizontal *****/
+.horizontal-bar-wrapper {
+    margin-left: 25px; 
+    margin-right: 25px; 
+    margin-top: 30px;
+  }
+  
+.horizontal-bar {
+    border: none;
+    height: 1px;
+    background-color: #00000044; 
+  }
 .modal {
 	width: 95%;
 	height: 500px;
@@ -175,7 +187,7 @@ li:hover {
 	min-width: 300px;
 	padding: 60px;
 	background: white;
-	border-radius: 5px;
+	border-radius: 10px;
 	position: absolute;
 	top: 60%;
 	left: 50%;
@@ -246,8 +258,29 @@ button#edit-btn {
 	font-size: 14px;
 	font-weight: 200;
 }
+button#btn-modal {
+	margin-top: 25px;
+	margin-left: 25%;
+	background-color: #1D6154;
+	color: white;
+	font-size: 13px;
+	padding: 8px 50px;
+}
+
 button#edit-btn:hover {
 	background-color: transparent;
+}
+.delete-btn {
+	position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 50%;
 }
 .gallery {
 	width: 100%;
@@ -257,14 +290,13 @@ button#edit-btn:hover {
 	grid-row-gap: 20px;
 	margin-top: 50px;
 }
-
 .gallery img {
 	width: 100%;
 
 }
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact > * {
 	text-align: center;
