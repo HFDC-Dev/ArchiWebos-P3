@@ -270,17 +270,28 @@ button#btn-modal {
 button#edit-btn:hover {
 	background-color: transparent;
 }
+/* Style de l'icone delete */
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container img {
+    width: 100%;
+    display: block;
+}
+
 .delete-btn {
-	position: absolute;
+    position: absolute;
     top: 5px;
     right: 5px;
-    background: red;
     color: white;
-    border: none;
-    padding: 5px;
+    font-size: 10px;
     cursor: pointer;
-    font-size: 14px;
-    border-radius: 50%;
+    background: rgb(0, 0, 0);
+    padding: 4px;
+	border-radius: 2px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 .gallery {
 	width: 100%;
