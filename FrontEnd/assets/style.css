@@ -293,6 +293,24 @@ button#edit-btn:hover {
 	border-radius: 2px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
+/* Bouton ajout d'une photo */
+.add-hidden {
+	display: none;
+}
+#back-arrow {
+	position: absolute;
+	right: 90%;
+	bottom: 92%;
+	border: none;
+	color: black;
+	background-color: transparent;
+	padding: 0;
+	font-size: 23px;
+	visibility: visible;
+}
+.arrow-hidden {
+	visibility: hidden;
+}
 .gallery {
 	width: 100%;
 	display: grid;

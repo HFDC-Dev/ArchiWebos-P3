@@ -5,6 +5,11 @@ window.addEventListener("DOMContentLoaded", () => {
     // Sélection de tous les éléments qui déclenchent l'ouverture de la modal 
     const modalTriggers = document.querySelectorAll(".modal-trigger");
 
+    const modalGallery = document.getElementById("modal-gallery");
+    const modalAddPhoto = document.getElementById("modal-add");
+    const addPhotoBtn = document.getElementById("btn-modal");
+    const backBtn = document.getElementById("back-arrow");
+
     // Ajout d'un écouteur d'événements
     modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal));
 
@@ -59,4 +64,16 @@ window.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => console.error("Erreur :", error));
     }
+
+    // Passer à la modal "Ajout d'une photo" en masquant la gallery
+    addPhotoBtn.addEventListener("click", () => {
+        modalGallery.style.display = "none"; // Cache la galerie
+        modalAddPhoto.style.display = "block"; // Affiche l'ajout de photo
+    });
+
+    backBtn.addEventListener("click", () => {
+        modalAddPhoto.style.display = "none"; // Cache l'ajout de photo
+        modalGallery.style.display = "block"; // Réaffiche la galerie
+    });
+
 });
