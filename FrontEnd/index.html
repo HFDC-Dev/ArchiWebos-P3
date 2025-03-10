@@ -62,7 +62,9 @@
 						<div class="horizontal-bar-wrapper">
 							<hr class="horizontal-bar">
 						</div>
-						<button id="btn-modal" type="submit">Ajouter une photo</button>
+						<div class="btn-add-photo">
+							<button id="btn-modal" type="submit">Ajouter une photo</button>
+						</div>
 					</div>
 					<!-- Ajouter une photo -->
 					<div id="modal-add" class="add-hidden">
@@ -74,12 +76,22 @@
 							<p id="format"> jpg, png : 4mo max</p>
 						</div>
 						<div class="photo-info">
-							<label for="photo-title">Titre</label>
-							<input type="text" id="photo-title">
-							<label for="photo-category">Catégorie</label>
-							<select id="photo-category">
-								<option value=""></option>
-							</select>
+							<div class="form-title">
+								<label for="photo-title">Titre</label>
+								<input type="text" id="photo-title">
+							</div>
+							<div class="form-category">
+								<label for="photo-category">Catégorie</label>
+								<select id="photo-category">
+									<option value=""></option>
+								</select>
+							</div>
+							<div class="horizontal-bar-wrapper-add">
+								<hr class="horizontal-bar">
+							</div>
+							<div class="btn-valid">
+								<button id="btn-modal-valid" type="submit">Valider</button>
+							</div>
 						</div>
 					</div>
 				</div>

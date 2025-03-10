@@ -258,9 +258,12 @@ button#edit-btn {
 	font-size: 14px;
 	font-weight: 200;
 }
+.btn-add-photo {
+	display: flex;
+	justify-content: center;
+}
 button#btn-modal {
 	margin-top: 25px;
-	margin-left: 25%;
 	background-color: #1D6154;
 	color: white;
 	font-size: 13px;
@@ -342,16 +345,65 @@ button#edit-btn:hover {
 }
 /** Categorie pour l'ajout d'une photo **/
 .photo-info {
-	display: flex;
-	flex-direction: column;
-	margin-left: 9%;
-	margin-right: 9%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 9%;
+    margin-right: 9%;
+	margin-top: 15px;
 }
 #format {
-	text-align: center;
-	font-size: 10px;
-	margin-top: 10px;
+    text-align: center;
+    font-size: 10px;
+    margin-top: 10px;
 }
+.form-title,
+.form-category {
+    display: flex;
+    flex-direction: column;
+	margin-top: 20px;
+}
+.form-title label,
+.form-category label {
+    margin-bottom: 10px;
+}
+.form-category select {
+	margin-top: 0;
+}
+.form-title input {
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    height: 50px;
+    outline: 0;
+}
+.form-category select {
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    height: 50px;
+    outline: 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+}
+
+.horizontal-bar-wrapper-add {
+	margin-left: 0; 
+    margin-right: 0; 
+    margin-top: 30px;
+}
+.btn-valid {
+	display: flex;
+	justify-content: center;
+}
+button#btn-modal-valid {
+	margin-top: 15px;
+	background-color: #A7A7A7;
+	color: white;
+	font-size: 13px;
+	padding: 9px 85px;
+	border: none;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
