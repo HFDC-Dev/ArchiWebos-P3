@@ -18,6 +18,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Sélection éléments du formulaire
     const titleInput = document.getElementById("photo-title");
     const validateButton = document.getElementById("btn-modal-valid");
+    const categorySelect = document.getElementById("photo-category");
 
 
     // Ajout d'un écouteur d'événements
@@ -50,17 +51,18 @@ window.addEventListener("DOMContentLoaded", () => {
             // Ajouter l'événement de suppression
             const deleteButton = figure.querySelector(".delete-btn");
             deleteButton.addEventListener("click", () => deleteWork(work.id, figure));
-
             pictureContainer.appendChild(figure);
         });
     }
 
     // Fonction pour supprimer une image
     function deleteWork(id, figureElement) {
+        // Récupérer le token depuis localStorage
+        const token = localStorage.getItem("authToken");
         fetch(`http://localhost:5678/api/works/${id}`, {
             method: "DELETE",
             headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}` // Ajoute le token si nécessaire
+                "Authorization": `Bearer ${token}` // Utilisation du token
             }
         })
             .then(response => {
@@ -105,7 +107,6 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     // Ajout des catégories dans le <select> de la modal
-    const categorySelect = document.getElementById("photo-category");
 
     fetch("http://localhost:5678/api/categories")
         .then(response => {
@@ -140,4 +141,83 @@ window.addEventListener("DOMContentLoaded", () => {
     titleInput.addEventListener("input", checkFormValidity);
     categorySelect.addEventListener("change", checkFormValidity);
     photoInput.addEventListener("change", checkFormValidity);
+
+
+    // Ajouter un écouteur sur le bouton de validation
+    validateButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Empêcher le rechargement de la page
+
+        const file = photoInput.files[0]; // Récupérer l'image
+        const title = titleInput.value.trim();
+        const categoryId = categorySelect.value;
+
+        // Vérifier que tous les champs sont remplis
+        if (!file || !title || !categoryId) {
+            alert("Veuillez remplir tous les champs.");
+            return;
+        }
+
+        // Récupérer le token depuis localStorage
+        const token = localStorage.getItem("authToken");
+        console.log("Token:", token); // Ajouter un log pour vérifier si le token est présent
+
+        // Vérifier si le token est disponible
+        if (!token) {
+            alert("Vous devez être connecté pour ajouter une image.");
+            return;
+        }
+
+        // Préparer les données pour l'API
+        const formData = new FormData();
+        formData.append("image", file);
+        formData.append("title", title);
+        formData.append("category", categoryId);
+
+        // Envoi de la requête POST à l'API
+        fetch("http://localhost:5678/api/works", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}` // Utilisation du token
+            },
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erreur lors de l'ajout de l'image.");
+                }
+                return response.json();
+            })
+            .then((newWork) => {
+                // Ajouter la nouvelle image à la galerie sans recharger la page
+                addWorkToGallery(newWork);
+
+                // Réinitialiser le formulaire
+                titleInput.value = "";
+                categorySelect.value = "";
+                photoInput.value = "";
+                document.getElementById("add-photo").innerHTML = `
+                    <i class="fa-solid fa-image"></i>
+                    <button id="upload-btn">+ Ajouter photo</button>
+                    <input type="file" id="photo-input" accept="image/png, image/jpeg" style="display: none;">
+                    <p id="format"> jpg, png : 4mo max</p>
+                `;
+
+                // Désactiver le bouton après soumission
+                validateButton.style.backgroundColor = "grey";
+                validateButton.disabled = true;
+            })
+            .catch(error => console.error("Erreur :", error));
+    });
+
+    // Fonction pour ajouter une image à la galerie
+    function addWorkToGallery(work) {
+        const galleryContainer = document.querySelector(".gallery");
+
+        const figure = document.createElement("figure");
+        figure.innerHTML = `
+        <img src="${work.imageUrl}" alt="${work.title}">
+        <figcaption>${work.title}</figcaption>
+    `;
+        galleryContainer.appendChild(figure);
+    }
 });
