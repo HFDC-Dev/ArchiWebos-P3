@@ -189,7 +189,7 @@ li:hover {
 	background: white;
 	border-radius: 10px;
 	position: absolute;
-	top: 60%;
+	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
@@ -317,6 +317,8 @@ button#edit-btn:hover {
 
 /** Style pour l'ajout d'une photo **/
 #add-photo {
+	width: 75%; /* Largeur fixée */
+    height: 130px; /* Hauteur fixe */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -325,6 +327,11 @@ button#edit-btn:hover {
     margin-right: 45px;
 	margin-top: 30px;
 	padding: 20px;
+	align-items: center;
+}
+#add-photo img {
+	max-width: 34%; /* L'image ne dépassera pas 34% de la largeur du conteneur */
+    object-fit: contain; /* Garde les proportions de l'image */
 }
 #add-photo i {
 	display: flex;
@@ -337,7 +344,7 @@ button#edit-btn:hover {
 	background-color: #cbd6dc;
 	border: none;
 	width: 47%;
-	margin-left: 26%;
+	margin-left: 3%;
 	margin-top: 10px;
 	font-size: 14px;
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

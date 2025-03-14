@@ -10,6 +10,16 @@ window.addEventListener("DOMContentLoaded", () => {
     const addPhotoBtn = document.getElementById("btn-modal");
     const backBtn = document.getElementById("back-arrow");
 
+    // Ajout d'une photo
+    const uploadBtn = document.getElementById("upload-btn");
+    const photoInput = document.getElementById("photo-input");
+    const addPhotoDiv = document.getElementById("add-photo");
+
+    // Sélection éléments du formulaire
+    const titleInput = document.getElementById("photo-title");
+    const validateButton = document.getElementById("btn-modal-valid");
+
+
     // Ajout d'un écouteur d'événements
     modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal));
 
@@ -76,4 +86,58 @@ window.addEventListener("DOMContentLoaded", () => {
         modalGallery.style.display = "block"; // Réaffiche la galerie
     });
 
+    // Ajout d'une photo
+    uploadBtn.addEventListener("click", () => {
+        photoInput.click(); // Ouvre le selecteur de fichier
+    });
+
+    photoInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                // Remplace le contenu de "add-photo" par l'image sélectionnée
+                addPhotoDiv.innerHTML = `<img src="${e.target.result}" alt="Aperçu de l'image" style="width: 100%; max-height: 300px; object-fit: cover;">`;
+            };
+            reader.readAsDataURL(file); // Convertit l'image en URL pour affichage
+        }
+    });
+
+    // Ajout des catégories dans le <select> de la modal
+    const categorySelect = document.getElementById("photo-category");
+
+    fetch("http://localhost:5678/api/categories")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erreur lors de la récupération des catégories");
+            }
+            return response.json();
+        })
+        .then(categories => {
+
+            // Ajoute chaque catégorie comme option dans le <select>
+            categories.forEach(category => {
+                const option = document.createElement("option");
+                option.value = category.id; // ID de la catégorie comme valeur
+                option.textContent = category.name; // Nom de la catégorie comme texte
+                categorySelect.appendChild(option);
+            });
+        })
+
+    // Fonction pour vérifier si tous les champs sont remplis
+    function checkFormValidity() {
+        if (titleInput.value.trim() !== "" && categorySelect.value !== "" && photoInput.files.length > 0) {
+            validateButton.style.backgroundColor = "#1D6154"; // Active en vert
+            validateButton.disabled = false;
+        } else {
+            validateButton.style.backgroundColor = "#A7A7A7"; // Désactive en gris
+            validateButton.disabled = true;
+        }
+    }
+
+    // Ajout d'écouteurs d'événements pour surveiller les changements
+    titleInput.addEventListener("input", checkFormValidity);
+    categorySelect.addEventListener("change", checkFormValidity);
+    photoInput.addEventListener("change", checkFormValidity);
 });
