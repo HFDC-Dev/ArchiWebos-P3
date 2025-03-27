@@ -27,4 +27,19 @@ window.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem("authToken"); // On supprime le token du localStorage quand l'utilisateur est déconnecter
         window.location.href = "index.html"; // L'utilisateur est rediriger vers la page principale
     });
+
+    if (authToken) {
+        // Si un token est trouvé, afficher la barre "mode édition" et décaler le body
+        showEditBar();
+    }
 });
+
+// Fontion pour afficher la barre mode édition et décaler le body 
+function showEditBar() {
+    const editBar = document.getElementById("edit-bar");
+    const body = document.body;
+
+    // Afficher la barre mode édition
+    editBar.classList.remove("edit-bar-hidden");
+    body.classList.add("edit-mode");
+}

@@ -20,6 +20,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const validateButton = document.getElementById("btn-modal-valid");
     const categorySelect = document.getElementById("photo-category");
 
+    const apiBaseUrl = "http://localhost:5678/api";
+    const apiWorksUrl = `${apiBaseUrl}/works`;
+
 
     // Ajout d'un écouteur d'événements
     modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal));
@@ -30,7 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     // Charger et afficher les images
-    fetch("http://localhost:5678/api/works")
+    fetch(apiWorksUrl)
         .then(response => response.json())
         .then(works => {
             displayWorks(works);
@@ -59,7 +62,7 @@ window.addEventListener("DOMContentLoaded", () => {
     function deleteWork(id, figureElement) {
         // Récupérer le token depuis localStorage
         const token = localStorage.getItem("authToken");
-        fetch(`http://localhost:5678/api/works/${id}`, {
+        fetch(`${apiBaseUrl}/works/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}` // Utilisation du token
@@ -108,7 +111,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Ajout des catégories dans le <select> de la modal
 
-    fetch("http://localhost:5678/api/categories")
+    fetch(`${apiBaseUrl}/categories`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erreur lors de la récupération des catégories");
@@ -174,7 +177,7 @@ window.addEventListener("DOMContentLoaded", () => {
         formData.append("category", categoryId);
 
         // Envoi de la requête POST à l'API
-        fetch("http://localhost:5678/api/works", {
+        fetch(apiWorksUrl, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}` // Utilisation du token
